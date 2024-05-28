@@ -1,0 +1,219 @@
+
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            /*This section involves the overall style of main tags*/
+    
+            * {
+                font-family: Lucida Handwriting;
+            }
+    
+            body {
+                background-color: rgb(12, 138, 211);
+                background-size: cover;
+            }
+    
+            form {
+                text-align: center;
+            }
+    
+            h1 {
+                color: white;
+                text-align: center;
+                font-family: Lucida Handwriting;
+                font-size: 500%;
+            }
+    
+            button {
+                font-weight: bold;
+                background-color: rgb(12, 138, 221);
+                padding: 8px 16px;
+                display: inline-block;
+                text-decoration: none;
+                border-radius: 3px;
+                color: black;
+                border-color: black;
+                font-family: Monaco;
+                border-style: solid;
+            }
+    
+            input {
+                padding: 12px 20px;
+                margin: 8px 0;
+                box-sizing: border-box
+            }
+    
+            label {
+                color: white;
+            }
+    
+            /*Margin, layout and design of paragraphs and structures*/
+    
+            .para {
+                text-align: center;
+            }
+    
+            .result {
+                font-weight: bold;
+                background-color: rgb(12, 138, 221);
+                padding: 8px 16px;
+                display: inline-block;
+                text-decoration: none;
+                border-radius: 3px;
+                color: black;
+                border-color: black;
+                font-family: Monaco;
+                border-style: solid;
+            }
+    
+            .pred {
+                text-align: center;
+            }
+    
+            .intro {
+                font-size: 20px;
+            }
+    
+    
+            /*Layout and structure of form body in page*/
+    
+            div.container {
+                background-color: rgba(0, 0, 0, 0.5);
+                font-size: 18px;
+                margin: 1%;
+                width: 500px;
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                padding: 7px;
+                border-radius: 50px 20px;
+                box-shadow: 2px 2px 15px
+            }
+    
+            div.page {
+                width: 500px;
+                margin: 100px auto 0px auto;
+            }
+    
+            form.info {
+                margin: 15px;
+            }
+    
+            /*This section involves the design of the inputs in the form*/
+    
+            input#s {
+                width: 300px;
+                border: 1px solid #ddd;
+                border-radius: 3px;
+                outline: 0;
+                padding: 7px;
+                color: black;
+                box-shadow: insert 1px 1px 5px rgba(0, 0, 0, 0.3);
+            }
+    
+            input#k {
+                width: 300px;
+                border: 1px solid #ddd;
+                border-radius: 3px;
+                outline: 0;
+                padding: 7px;
+                background-color: #fff;
+                box-shadow: insert 1px 1px 5px rgba(0, 0, 0, 0.3);
+            }
+    
+            input#tau {
+                width: 300px;
+                border: 1px solid #ddd;
+                border-radius: 3px;
+                outline: 0;
+                padding: 7px;
+                background-color: #fff;
+                box-shadow: insert 1px 1px 5px rgba(0, 0, 0, 0.3);
+            }
+    
+            input#r {
+                width: 300px;
+                border: 1px solid #ddd;
+                border-radius: 3px;
+                outline: 0;
+                padding: 7px;
+                background-color: #fff;
+                box-shadow: insert 1px 1px 5px rgba(0, 0, 0, 0.3);
+            }
+    
+    
+            /*Responsible for shadow backgrounds*/
+    
+            .table {
+                display: table;
+                margin: 0 auto;
+                margin-left: 33.85%;
+            }
+    
+            ul#horizontal-list {
+                min-width: 696px;
+                list-style: none;
+            }
+    
+            /*This section is concerned with the link layout*/
+    
+            div.title img {
+                display: inline-block;
+                vertical-align: middle;
+            }
+    
+            div.title h1 {
+                margin-left: 150px;
+                display: inline-block;
+                vertical-align: middle;
+                padding-left: 10%;
+                font-family: "Lucida Handwriting";
+            }
+    
+        </style>
+    </head>
+    
+    <body>
+        <!---Initialize structure of Title and house picture--->
+        <div class="title">
+            <h1>Option Value Predictor</h1>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXUvjCXm6o8x01sawYlZAwTU50lxI1DBTDYym-3z1ftg&s" class="option" />
+        </div>
+    
+        <!---Containerize main page for styling--->
+        <div class="page">
+            <!---Containerize paragraph and form for styling--->
+            <div class="container">
+                <br>
+                <!---Initialize form structure and inputs, set method to "POST"--->
+                <form action="{{url_for('predict')}}" method="post" class="info">
+                    <label for="name">S: Current Assest Value</label>
+                    <input type="text" id="s" name="S: Current Assest Value" required="required" />
+                    <br>
+                    <br>
+                    <label for="name">K: Strike price of Option</label>
+                    <input type="text" id="k" name="K: Strike price of Option" required="required" /> 
+                    <br>
+                    <br>
+                    <label for="name">tau: Time to maturity (in years)</label>
+                    <input type="text" id="tau" name="tau: Time to maturity (in years)" required="required" />
+                    <br>
+                    <br>
+                    <label for="name">r: Annual interest rate</label>
+                    <br>
+                    <input type="text" id="r" name="r: Annual interest rate"  required="required" /> 
+                    <br>
+                    <br>
+                    <button type="submit" class="btn">Predict</button>
+                </form>
+                <br> 
+                    <!---Set placeholder for prediction output--->
+                    <div class ="pred">
+                        <p class = "result"><b>{{ prediction_text }}</b></p>
+                    </div>
+                </div>
+                <br>
+                <br>
+            </div>
+        </body>
+    </html>
