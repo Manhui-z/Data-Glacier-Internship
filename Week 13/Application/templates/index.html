@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hate Speech Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='image.jpg') }}" alt="Top Image" class="top-image">
+        <h2>Please enter your tweet:</h2>
+        <form action="/" method="post">
+            <input type="text" name="tweet" placeholder="Enter your tweet here..." required>
+            <button type="submit">Submit</button>
+        </form>
+        {% if result is not none %}
+            <p class="result">{{ result }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
